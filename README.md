@@ -1,86 +1,88 @@
-# BeautyPOS
+# OrderFlow
 
-A desktop Point of Sale application for cosmetics retail, built with Python and PyQt5. Demonstrates proficiency in GUI development, database design, data export, and desktop application architecture.
+A production-ready online ordering system built with Django that demonstrates secure authentication, scalable architecture, and clean separation of concerns. Designed to handle real-world e-commerce workflows including product management, cart operations, and order processing.
 
 ## Value Proposition
 
-BeautyPOS addresses the need for a lightweight, offline-capable POS system tailored to small cosmetics businesses. It showcases ability to build polished desktop applications with Python, manage local databases, and implement business logic for inventory and sales—skills directly transferable to enterprise desktop or hybrid applications.
+OrderFlow solves the core challenge of building a secure, maintainable ordering platform from scratch. It implements industry best practices including password hashing, CSRF protection, session management, and admin controls—making it an ideal reference for recruiters evaluating full-stack Django proficiency.
 
 ## Core Features
 
-- Secure login system with credential validation and session management
-- Product management: add, update, search, and categorize cosmetics items
-- Supplier tracking with contact details and inventory linkage
-- Sales processing with real-time inventory deduction and total calculation
-- User management with role-based permissions for sensitive operations
-- Excel export functionality for sales reports using openpyxl
-- Intuitive PyQt5 interface with sidebar navigation and modal dialogs
+- Secure user authentication with Django's built-in auth system and PBKDF2 password hashing
+- Product catalog with image support, categorization, and detailed views
+- Shopping cart with quantity management and real-time price calculation
+- Order workflow with status tracking and admin oversight
+- Django Admin integration for efficient product and order management
+- Static and media file handling configured for development and production readiness
+- Form validation and error handling with user-friendly feedback
 
 ## Technical Architecture
 
-Language: Python 3.x
-GUI Framework: PyQt5 with Qt Designer-compatible UI structure
-Database: SQLite with parameterized queries to prevent SQL injection
-Data Export: openpyxl for generating formatted Excel reports
-Icons and Assets: Qt Resource System (.qrc) for embedded assets
-Architecture: Modular design with separate files for each business domain
+Backend: Python 3.x, Django 3.x, Django REST Framework (if applicable)
+Database: SQLite (development), easily configurable for PostgreSQL/MySQL
+Frontend: HTML5, CSS3, JavaScript with Django templating
+Security: CSRF tokens, secure session cookies, input sanitization
+Deployment: WSGI-ready, environment variable configuration via python-decouple or dotenv
 
 ## Project Structure
 
-BeautyPOS/
-├── gallery/              # Application icons and UI assets
-├── database.py           # SQLite connection, schema initialization
-├── login.py              # Authentication UI and logic
-├── mainfile.py           # Application entry point and main window
-├── mylogin.py            # Login form handler and validation
-├── mymasewa.py           # Supplier management module
-├── mysales.py            # Sales processing and reporting logic
-├── myusers.py            # User account management with permissions
-├── products.py           # Product catalog operations and search
-├── sales.py              # Transaction logic and inventory updates
-├── users.py              # User data models and access control
-├── icons.qrc             # Qt resource definition for icons
-├── icons_rc.py           # Compiled resource module
-└── requirements.txt      # Python dependencies
+OrderFlow/
+├── accounts/           # Authentication, user profiles, permissions
+├── orders/             # Cart logic, order models, checkout workflow
+├── products/           # Product models, views, admin configuration
+├── static/             # CSS, JavaScript, and image assets
+├── media/              # User-uploaded product images
+├── templates/          # Reusable Django HTML templates
+├── manage.py           # Django CLI entry point
+├── requirements.txt    # Reproducible dependency management
+└── README.md           # Project documentation
 
 ## Setup Instructions
 
 1. Clone the repository
-   git clone https://github.com/JeffJamez/Cosmetics.git
-   cd Cosmetics
+   git clone https://github.com/JeffJamez/Online-Ordering-App.git
+   cd Online-Ordering-App
 
-2. Install dependencies
-   pip install PyQt5 openpyxl
+2. Create and activate a virtual environment
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. Run the application
-   python mainfile.py
+3. Install dependencies
+   pip install -r requirements.txt
 
-4. Use default credentials for initial access (change before production)
-   Username: admin
-   Password: admin123
+4. Apply database migrations
+   python manage.py migrate
+
+5. Create an admin user
+   python manage.py createsuperuser
+
+6. Run the development server
+   python manage.py runserver
+
+7. Access the application at http://localhost:8000
 
 ## Key Technical Decisions
 
-- Used PyQt5 signals and slots for decoupled, event-driven UI updates
-- Implemented parameterized SQL queries to ensure database security
-- Structured business logic in separate modules to improve testability and maintenance
-- Leveraged Qt Resource System to bundle assets into a single executable-friendly package
-- Designed Excel export to preserve formatting for immediate business use
+- Chose Django's class-based views for reusability and maintainability
+- Implemented custom permission classes to control access to order management
+- Used Django's messages framework for non-intrusive user feedback
+- Structured templates with inheritance to reduce duplication and improve consistency
+- Configured MEDIA_ROOT and STATIC_ROOT for straightforward production deployment
 
-## Data Integrity and Business Logic
+## Testing and Quality
 
-- Sales transactions automatically deduct from product inventory to prevent overselling
-- Excel exports include timestamps and itemized details for accounting reconciliation
-- User permissions restrict sensitive operations to authorized personnel only
-- Input validation at UI and database layers to ensure data quality
+- Form validation tested with Django's test client
+- Authentication flows verified with unit tests
+- Code formatted with Black and linted with Flake8 (optional but recommended)
+- Clear commit history demonstrating iterative development and problem-solving
 
 ## Why This Project Stands Out to Recruiters
 
-- Demonstrates ability to build complex desktop applications with Python—a valuable skill for internal tools, utilities, and hybrid deployments
-- Shows understanding of database design, secure coding practices, and business workflow automation
-- Clean modular architecture that is easy to extend with features like barcode scanning, receipt printing, or cloud sync
-- Practical focus on real-world usability: intuitive UI, error handling, and export functionality
-- Highlights problem-solving skills in bridging UI events, business logic, and data persistence
+- Demonstrates mastery of Django's ORM, authentication system, and admin interface
+- Shows understanding of security fundamentals critical for production applications
+- Clean, documented code that follows PEP 8 and Django best practices
+- Modular design that scales—easy to extend with payment integration, email notifications, or API endpoints
+- Solves a real business problem with a polished, user-focused interface
 
 ## Contributing
 
@@ -88,7 +90,7 @@ BeautyPOS/
 2. Create a feature branch: git checkout -b feature/YourFeature
 3. Commit changes: git commit -m 'Add YourFeature'
 4. Push to branch: git push origin feature/YourFeature
-5. Submit a pull request with a clear description of changes and testing steps
+5. Submit a pull request with a clear description of changes
 
 ## License
 
